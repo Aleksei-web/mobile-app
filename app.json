@@ -1,6 +1,19 @@
 {
   "expo": {
     "name": "mosline-mobile",
+    "plugins": [
+      [
+        "expo-notifications",
+        {
+          "icon": "./local/assets/notification-icon.png",
+          "color": "#ffffff",
+          "sounds": [
+            "./local/assets/notification-sound.wav",
+            "./local/assets/notification-sound-other.wav"
+          ]
+        }
+      ]
+    ],
     "slug": "mosline-mobile",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -23,7 +36,9 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "useNextNotificationsApi": true,
+      "package": "com.mosline.mobile"
     },
     "web": {
       "favicon": "./assets/favicon.png"

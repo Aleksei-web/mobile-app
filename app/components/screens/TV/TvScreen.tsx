@@ -2,9 +2,9 @@ import { FC } from "react";
 import { View, Text, StyleSheet } from "react-native";
 
 
-export const ProfileScreen:FC = () => {
+export const TvScreen:FC = () => {
 	return (<View style={styles.container}>
-		<Text>Profile</Text>
+		<Text>TV</Text>
 	</View>)
 }
 

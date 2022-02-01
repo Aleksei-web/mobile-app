@@ -7,14 +7,18 @@ import { userTypes } from '../../actionTypes/userTypes';
 import { FetchUserRequest, User } from '../../types/user';
 
 const getUser = async(id: string) => {
-	return await axios.get<User[]>(url + id);
+	console.log('url + id', url + id);
+	
+	return await axios.get<User[]>('https://jsonplaceholder.typicode.com/users/1');
 }
 
 function* fetchUserSaga({payload}:FetchUserRequest){
 	try{
-		const response: AxiosResponse<User[]> = yield getUser(payload);
+		const response: AxiosResponse<User> = yield getUser(payload);
+		console.log('response.data[0]', response.data);
+		
 		yield put(fetchUserSuccess({
-			user: response.data[0]
+			user: response.data
 		}))
 	} catch(e){
 		yield put(

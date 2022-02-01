@@ -1,5 +1,7 @@
 import {FC} from 'react';
-import { View, Text, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
+
+import { colors } from '../../../contstants';
 import { TypeRootStackParamList } from '../../../navigation/types';
 import { menu } from './menu';
 import { NavItem } from './NavItem';
@@ -19,13 +21,14 @@ export const Footer: FC<IFooter> = ({navigate, currentRoute}) => {
 
 const styles = StyleSheet.create({
 	container: {
-		flexDirection: 'row',
+		flexDirection: 'column',
 		borderTopColor: '#e1e1e1',
+		paddingTop: 40,
 		borderTopWidth: 1,
-		justifyContent: 'space-between',
-		alignItems: 'center',
 		padding: 4,
-		paddingBottom: 4,
-		height: 80
+		height: '100%',
+		width: '70%',
+		backgroundColor: colors.SECONDARY,
+		position: 'absolute'
 	}
 })

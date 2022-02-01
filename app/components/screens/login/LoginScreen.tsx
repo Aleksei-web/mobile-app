@@ -6,6 +6,7 @@ import { AppButton } from "../../ui/AppButton";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUserRequest } from "../../../store/actions/user";
 import { RootState } from "../../../store/reducers/rootReducer";
+import { colors } from "../../../contstants";
 
 interface IData {
 	name: string
@@ -13,7 +14,7 @@ interface IData {
 }
 
 export const LoginScreen:FC = () => {
-	const [data, setData] = useState<IData>({name: '660647401'} as IData)
+	const [data, setData] = useState<IData>({name: '188305891'} as IData)
 
 	const pending = useSelector((state: RootState) => state.user.pending)
 	const dispatch = useDispatch();
@@ -46,7 +47,7 @@ export const LoginScreen:FC = () => {
 			</View>
 			<View style={styles.forgotPassword}>
 				<Pressable onPress={() => console.log('press')}>
-					<Text >Забыли пароль?</Text>
+					<Text style={styles.forgotPasswordText} >Забыли пароль?</Text>
 				</Pressable>
 			</View></>
 			)
@@ -61,7 +62,8 @@ const styles = StyleSheet.create({
 		height: '100%',
 		width: '100%',
 		justifyContent: 'center',
-		alignItems: 'center'
+		alignItems: 'center',
+		backgroundColor: colors.BLACK
 	},
 	text: {
 		textAlign: 'center',
@@ -72,12 +74,15 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 	},
 	title: {
-		fontSize: 24
+		fontSize: 24,
+		color: colors.WHITE
 	},
 	forgotPassword: {
 		marginTop: 16,
 		width: '80%',
 		alignItems: 'flex-end',
-		color: '#757575',
+	},
+	forgotPasswordText: {
+		color: colors.WHITESECONDARY
 	}
 })

@@ -9,4 +9,8 @@ export const menu: IFooterItem[] = [
 		iconName: 'profile',
 		title: 'Profile',
 	},
+	{
+		iconName: 'wechat',
+		title: 'Chat'
+	}
 ]
