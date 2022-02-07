@@ -1,13 +1,16 @@
 import { FC } from 'react';
 import {
+	DrawerContentComponentProps,
 	DrawerContentScrollView,
 	DrawerItemList,
 } from '@react-navigation/drawer';
 import { View, Text, TouchableOpacity, Image } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { colors } from '../../contstants';
-
-export const CustomDrawer: FC = (props) => {
+  
+export const CustomDrawer: FC<DrawerContentComponentProps> = (
+	props: DrawerContentComponentProps
+) => {
 	return (
 		<View style={{ flex: 1 }}>
 			<DrawerContentScrollView
