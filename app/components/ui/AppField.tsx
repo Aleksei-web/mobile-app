@@ -1,25 +1,31 @@
-import { FC } from "react";
-import { TextInput, StyleSheet } from "react-native";
+import { FC } from 'react';
+import { TextInput, StyleSheet } from 'react-native';
 
 interface IField {
-	onChange: (val: string) => void
-	val: string
-	placeholder: string
-	isSecure?: boolean
+	onChange: (val: string) => void;
+	val: string;
+	placeholder: string;
+	isSecure?: boolean;
 }
 
-export const AppField:FC<IField> = ({onChange, placeholder, val, isSecure}) => {
+export const AppField: FC<IField> = ({
+	onChange,
+	placeholder,
+	val,
+	isSecure,
+}) => {
 	return (
-		<TextInput 
+		<TextInput
 			placeholder={placeholder}
 			onChangeText={onChange}
 			value={val}
 			secureTextEntry={isSecure}
-			autoCapitalize='none'
+			autoCapitalize="none"
+			autoCorrect={false}
 			style={styles.input}
-			/>
-	)
-}
+		/>
+	);
+};
 
 const styles = StyleSheet.create({
 	input: {
@@ -29,6 +35,6 @@ const styles = StyleSheet.create({
 		fontSize: 18,
 		padding: 10,
 		backgroundColor: '#e0e0e0',
-		borderRadius: 8
-	}
-})
+		borderRadius: 8,
+	},
+});

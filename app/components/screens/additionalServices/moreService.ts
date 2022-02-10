@@ -1,13 +1,11 @@
-import {
-	MaterialCommunityIcons,
-} from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 interface AnotherService {
 	title: string;
 	icon: keyof typeof MaterialCommunityIcons.glyphMap;
 }
 
-export const anotherService: AnotherService[] = [
+export const service: AnotherService[] = [
 	{
 		title: 'Умный дом и видеонаблюдение',
 		icon: 'home-plus-outline',

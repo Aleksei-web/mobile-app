@@ -1,0 +1,3 @@
+export enum tokenTypes {
+	SAVE_TOKEN_NOTIFICATION = 'SAVE_TOKEN_NOTIFICATION',
+}

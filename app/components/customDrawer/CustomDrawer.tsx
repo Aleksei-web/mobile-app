@@ -7,10 +7,15 @@ import {
 import { View, Text, TouchableOpacity, Image } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { colors } from '../../contstants';
-  
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store/reducers/rootReducer';
+
 export const CustomDrawer: FC<DrawerContentComponentProps> = (
 	props: DrawerContentComponentProps
 ) => {
+	const { user } = useSelector((state: RootState) => state.user);
+	console.log(user, 'asdfasdf')
+
 	return (
 		<View style={{ flex: 1 }}>
 			<DrawerContentScrollView
@@ -18,7 +23,7 @@ export const CustomDrawer: FC<DrawerContentComponentProps> = (
 				contentContainerStyle={{ backgroundColor: colors.MAIN }}
 			>
 				<View style={{ paddingLeft: 10 }}>
-					<Text style={{ fontSize: 18 }}>Коровяков </Text>
+					<Text style={{ fontSize: 18 }}>{user?.login}</Text>
 				</View>
 				<View style={{ backgroundColor: '#fff', flex: 1, marginTop: 10 }}>
 					<DrawerItemList {...props} />

@@ -1,34 +1,54 @@
-import axios, { AxiosPromise, AxiosResponse, AxiosResponseHeaders } from 'axios';
-const url = 'https://billing.mosline.ru:8110/api/hydra-service/get-current-service-list?customerId='
+import axios, {
+	AxiosPromise,
+	AxiosResponse,
+	AxiosResponseHeaders,
+} from 'axios';
 
-import { all, call, put, takeLatest } from "redux-saga/effects";
+export const api = axios.create({
+	baseURL: 'https://send-notificator-server.herokuapp.com',
+});
+
+import { all, call, put, takeLatest } from 'redux-saga/effects';
 import { fetchUserFailure, fetchUserSuccess } from '../../actions/user';
 import { userTypes } from '../../actionTypes/userTypes';
 import { FetchUserRequest, User } from '../../types/user';
 
-const getUser = async(id: string) => {
-	console.log('url + id', url + id);
-	
-	return await axios.get<User[]>('https://jsonplaceholder.typicode.com/users/1');
-}
+type LoginData = {
+	password: string;
+	login: string;
+	token: string;
+};
 
-function* fetchUserSaga({payload}:FetchUserRequest){
-	try{
-		const response: AxiosResponse<User> = yield getUser(payload);
-		console.log('response.data[0]', response.data);
-		
-		yield put(fetchUserSuccess({
-			user: response.data
-		}))
-	} catch(e){
-		yield put(
-			fetchUserFailure({error: e.message})
-		)
+const getUser = async ({ password, login, token }: LoginData) => {
+	console.log('url + id', password, login, token);
+
+	return await api.post<{ login: string }>('/login', {
+		password,
+		login,
+		token,
+	});
+};
+
+function* fetchUserSaga({ payload }: FetchUserRequest) {
+	try {
+		const response: AxiosResponse<{ login: string }> = yield getUser(payload);
+		console.log(response.data.user, 'asd response');
+
+		if (response.data) {
+			yield put(
+				fetchUserSuccess({
+					user: { ...response.data.user},
+				})
+			);
+		}
+	} catch (e) {
+		console.log('eror', e);
+		yield put(fetchUserFailure({ error: 'Ошибка авторизации' }));
 	}
 }
 
-function* userSaga(){
-	yield all([takeLatest(userTypes.FETCH_USER_REQUEST, fetchUserSaga)])
+function* userSaga() {
+	yield all([takeLatest(userTypes.FETCH_USER_REQUEST, fetchUserSaga)]);
 }
 
 export default userSaga;

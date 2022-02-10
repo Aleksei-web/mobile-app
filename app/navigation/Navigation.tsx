@@ -30,7 +30,7 @@ export const Navigation: FC = () => {
 	const { user } = useSelector((state: RootState) => state.user);
 	const ref = useNavigationContainerRef();
 
-	console.log('user', user)
+	console.log('user', user);
 	useEffect(() => {
 		const timeout = setTimeout(() => {
 			setName(ref.getCurrentRoute()?.name);
@@ -47,7 +47,7 @@ export const Navigation: FC = () => {
 		return () => {
 			ref.removeListener('state', listener);
 		};
-	}, []);
+	}, [user]);
 
 	return (
 		<>
